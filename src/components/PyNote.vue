@@ -9,7 +9,7 @@ export default {
     name: 'PyNote',
     data() {
         return {
-            filename: "test2.md",
+            filename: "pynote.md",
             str: '# dddd'
         }
     },
