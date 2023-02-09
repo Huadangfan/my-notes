@@ -11,6 +11,7 @@ import '@kangc/v-md-editor/lib/theme/style/github.css'
 
 import createLineNumbertPlugin from '@kangc/v-md-editor/lib/plugins/line-number/index'
 import createCopyCodePlugin from '@kangc/v-md-editor/lib/plugins/copy-code/index'
+import createKatexPlugin from '@kangc/v-md-editor/lib/plugins/katex/cdn';
 import '@kangc/v-md-editor/lib/plugins/copy-code/copy-code.css'
 
 import hljs from 'highlight.js'
@@ -22,9 +23,14 @@ import router from './router'
 
 VMdPreview.use(githubTheme, {
     Hljs: hljs,
+    config: {
+        toc: {
+            includeLevel: [3, 4],
+        }
+    }
 });
 
-VMdPreview.use(createLineNumbertPlugin()).use(createCopyCodePlugin());
+VMdPreview.use(createLineNumbertPlugin()).use(createCopyCodePlugin()).use(createKatexPlugin());
 
 
 createApp(App).use(VMdPreview).use(router).mount('#app')

@@ -6,6 +6,12 @@
 
 简单平面图 (velocity, perturbation maps)
 
+$$sum_{i=1}^n a_i=0$$
+
+$
+sum_{i=1}^n a_i=0
+$ sdas
+
 ```sh
 gmt begin
 

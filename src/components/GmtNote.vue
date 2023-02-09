@@ -1,19 +1,19 @@
 <template>
-  <v-md-preview :text="str"></v-md-preview>
+  <v-md-preview :text="str" :include-level="[3,4]" :default-show-toc="true"></v-md-preview>
 </template>
 
 <script>
 import axios from 'axios'
 
 export default {
-  name: 'HelloWorld',
+  name: 'GmtNote',
   data() {
     return {
       str: '# dddd'
     }
   },
   created() {
-    axios.get("test.md").then(res => {
+    axios.get("gmt.md").then(res => {
       console.log(res.data);
       this.str = res.data;
     })

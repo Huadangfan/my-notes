@@ -1,23 +1,17 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <h1>Hello Router</h1>
-  <p>
-    <router-link to="/test">Go to Test1</router-link>
-    <router-link to="/test2">Go to Test2</router-link>
-  </p>
-  <!-- <HelloWorld/> -->
-  <router-view></router-view>
-
+  <div>
+    <router-view></router-view>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-import PyNote from './components/PyNote.vue'
+import GmtNote from './components/GmtNote.vue'
+// import PyNote from './components/PyNote.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    GmtNote
   },
   
 }
