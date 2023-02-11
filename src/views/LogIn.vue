@@ -4,7 +4,8 @@
     <button @click="jumpPynote">PyNote</button>
     <hr>
     <button @click="jumpGMTnote">GMTNote</button>
-
+    <hr>
+    <button @click="jumpTodo">Todo</button>
   </div>
 </template>
 
@@ -20,6 +21,9 @@ export default {
     },
     jumpGMTnote(){
       this.$router.push('/gmtnote');
+    },
+    jumpTodo(){
+      this.$router.push('/processlist');
     }
   }
 }

@@ -14,6 +14,9 @@ import createCopyCodePlugin from '@kangc/v-md-editor/lib/plugins/copy-code/index
 import createKatexPlugin from '@kangc/v-md-editor/lib/plugins/katex/cdn';
 import '@kangc/v-md-editor/lib/plugins/copy-code/copy-code.css'
 
+import createMermaidPlugin from '@kangc/v-md-editor/lib/plugins/mermaid/cdn';
+import '@kangc/v-md-editor/lib/plugins/mermaid/mermaid.css'
+
 import hljs from 'highlight.js'
 
 import router from './router'
@@ -30,7 +33,7 @@ VMdPreview.use(githubTheme, {
     }
 });
 
-VMdPreview.use(createLineNumbertPlugin()).use(createCopyCodePlugin()).use(createKatexPlugin());
+VMdPreview.use(createLineNumbertPlugin()).use(createCopyCodePlugin()).use(createKatexPlugin()).use(createMermaidPlugin());
 
 
 createApp(App).use(VMdPreview).use(router).mount('#app')

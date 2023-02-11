@@ -10,6 +10,7 @@ const router = createRouter({
     { path: '/gmtnote', name: 'gmtnote', component: GmtNote },
     { path: '/pynote', name: 'pynote', component: PyNote },
     { path: '/index', name: 'index', component: () => import('../views/SecndPage.vue') },
+    { path: '/processlist', name: 'processlist', component: () => import('../components/ProcessList.vue') },
     { path: '/', component: () => import('../views/LogIn.vue')}
   ]
 })
