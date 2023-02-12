@@ -27,6 +27,14 @@ plt.rcParams['ytick.direction'] = 'in'
 fig.savefig('filename.png',bbox_inches="tight") # save fig and cut the white padding
 ```
 
+轴标签位置自定义：
+```python
+ax.set_ylabel('y', y=0.7, labelpad=-4)
+ax.xaxis.labelpad = 50
+# labelpad: distance between label text and axis
+# y: the attribute of test, y=1 is top, 0 is bottom. Same as x.
+```
+
 `legend()`的框线和字体
 
 ```python
@@ -101,6 +109,12 @@ for shift, mainPeriod in enumerate(fil_period):
                         borderpad=0.2)
     ax2.add_artist(leg1)
 ```
+
+## Numpy 应用
+
+### 路径/射线密度统计
+
+using `np.histogram2d` and `plt.pcolormesh`, see [detail (example in mtaplotlib)](https://matplotlib.org/stable/gallery/statistics/time_series_histogram.html#sphx-glr-gallery-statistics-time-series-histogram-py)
 
 ## Multiprocessing
 
