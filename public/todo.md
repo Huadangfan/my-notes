@@ -6,6 +6,20 @@ A --- B
 B-->C[fa:fa-ban forbidden]
 B-->D(fa:fa-spinner);
 ```
+## References
+
+### Liu 2021 SRL (CVM1.0)
+
+[link](https://doi.org/10.1785/0220200318)
+
+data processing: 
+
+1. avoid travel time **outliers**
+- first remove travel-time data that are away from the main trend of travel-time curves.
+- filter out earthquake events that were recorded by fewer than `10` stations
+1. remove **redundant** earthquakes
+This uneven distribution of body-wave data could lead to unstable inversion problems and result in unreliable features in the inverted velocity models. 
+Divided study region into small bins (1-km-thick cell with 3 × 3 km area) and only use one randomly selected event in each bin.
 
 ## TomoATT work before 2023
 
@@ -30,7 +44,7 @@ gantt
     section myTesting
     small model test (done)   :done, milestone, 2023-01-30, 0d
     Region model test (done)  :done, milestone, 2023-01-30, 0d
-    ChuanDian src rec  :active, , 2023-02-8, 5d
+    ChuanDian src rec  :active, , 2023-02-8, 15d
 
     section RealData
     ChuanDian ATT?      :b1, 2023-02-10, 10d
@@ -66,10 +80,10 @@ gitGraph
    commit id: "limt dep data" tag: ".cpp"
 
    checkout "tomo test"
-   merge Preprocess id: "change the inv dep" tag: "v3.0"
+   merge Preprocess id: "change the inv dep" tag: "v3.0" type: REVERSE
 
    checkout main
-   merge "tomo test"
+   merge "tomo test" type: REVERSE
    commit id: "final" type: HIGHLIGHT
 ```
 - script
