@@ -41,6 +41,8 @@ inline int optim_method = 0; // 0: gradient descent, 1: halve_stepping, 2: LBFGS
 
 ## References
 
+### Xu and Song 2010 Tectonophysics
+
 ### Liu 2021 SRL (CVM1.0)
 
 [link](https://doi.org/10.1785/0220200318)
@@ -132,6 +134,11 @@ gitGraph
    merge "tomo test" type: REVERSE
    commit id: "final" type: HIGHLIGHT
 ```
+
+_**Preprocess:**_
+> merge all src_rec*dat, 删去被小于3个台站接受的src, 限制了震源深度，
+> 删去被小于4个台站接受的src，并去掉**冗余**的src (cells size: 3km (latitude) * 3km (longitude) * 1km(thickness))
+
 _**tomo test:**_
 > v1.0: 最原始的反演，使用了全部数据（震源被3个以上台站接受, about `109183` sources）.
 > v1.5: 在v1.0的基础上改变了 true model.
