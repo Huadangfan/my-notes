@@ -55,6 +55,8 @@ gantt
 **path:** /home/zhangxz/work/tomo/adjointTraveltime/real/ChuanDian_liT
 ...ing
 
+- **Process Map**
+
 ```mermaid
 ---
 title: ChuanDian Fake data test
@@ -69,7 +71,8 @@ gitGraph
    branch "tomo test"
    checkout "tomo test"
    commit id: "used total data" tag: "v1.0"
-   commit id: "change true model" tag: "v2.0"
+   commit id: "change true model1" tag: "v1.5"
+   commit id: "change true model2" tag: "v2.0"
 
    checkout Preprocess
    branch "Soure plot"
@@ -82,10 +85,25 @@ gitGraph
    checkout "tomo test"
    merge Preprocess id: "change the inv dep" tag: "v3.0" type: REVERSE
 
+   checkout Preprocess
+   commit id: "rm < 4"
+   commit id: "rm redundancy eq" tag: ".cpp"
+
+   checkout "tomo test"
+   merge Preprocess id: "clean data" tag: "v4.0"
+
+   checkout "Soure plot"
+   merge Preprocess id: "cells Hist" tag: ".py"
+
    checkout main
    merge "tomo test" type: REVERSE
    commit id: "final" type: HIGHLIGHT
 ```
+_**Source plot:**_
+> **src_rec map:** src and rec 的平面图和深度剖面
+> **ray map:** 计算射线密度（本质上是`np.histogram2d`）, and plot it.
+> **cells Hist:** calculated the `count` in each cells by C++, and plot the `histogram`
+
 - script
 build `.dat` by years  :  `src_rec_stati.sh`
 merge `.dat` and delete `<3 recorded` events         : `test2_v2.cpp`

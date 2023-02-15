@@ -1,5 +1,5 @@
 <template>
-    <v-md-preview :text="str"></v-md-preview>
+    <v-md-preview :text="str" left-toolbar="tip" height="500px"></v-md-preview>
 </template>
 
 <script>
