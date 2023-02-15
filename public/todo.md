@@ -6,6 +6,39 @@ A --- B
 B-->C[fa:fa-ban forbidden]
 B-->D(fa:fa-spinner);
 ```
+
+## TomoATT detail
+
+### Params input
+
+_**station location:**_ Lat, Lon, Depth (in meter, negetive (`-`) if beneth ground)
+_**source location:**_ Lat, Lon, Depth (in km, plus (`+`) beneth ground)
+
+_**min_max_dep:**_ the min_dep should be negetive depth, which means the outer boundary of the calculation area is slightly out of bounds. For example, `[-10.0, 100.0]`. The unit in km.
+
+### Checkerboard test
+
+通常对一个波长的perturbation用`5`个点来采样，从而决定空间网格划分。
+
+### Model update
+
+1. First, calculated `kernel` using [`Fast Sweeping`](https://en.wikipedia.org/wiki/Fast_sweeping_method) method. 然后使用多重反演网格 `multiple inversion grid` 对 `kernel` 进行光滑，得到了光滑化之后的 `kernel`.
+2. `kernel` 除以 `kernel` 的最大值，乘上 `step size`，作为模型的更新量. (normalization)
+3. 模型更新方法：似乎是**梯度下降法**。
+
+```cpp
+inline int optim_method = 0; // 0: gradient descent, 1: halve_stepping, 2: LBFGS
+```
+
+> 举个例子，如果 `step size = 0.01`，那么就意味着在 `kernel` 最大的地方, 模型会改变 `±1%`，对应其他地方，则会根据`kernel` 的相对大小, 更新对应的扰动值. 再例如，如果 `step = 0.01`，全空间 `kernel` 最大值为 `20`，在某一点，如果 `kernel` 值为 `-20`， 速度模型就更新 `-1%`； 如果 `kernel` 值为 `10`，速度模型就更新 `+0.5%`.
+
+### Some notes
+
+- 低速区恢复较慢，因为地震射线只会走高速区域，不会走低速区，因此低速区收敛较慢，甚至无法恢复至原始的模型
+- 反演区域要***大于等于***正演区域
+- 改变 `stencil_type` 不同的算法，改成1为迎风格式，速度更快，但精度较低，具体见examples
+- 可以使用***不均匀***的网格，具体见examples
+
 ## References
 
 ### Liu 2021 SRL (CVM1.0)
@@ -99,6 +132,13 @@ gitGraph
    merge "tomo test" type: REVERSE
    commit id: "final" type: HIGHLIGHT
 ```
+_**tomo test:**_
+> v1.0: 最原始的反演，使用了全部数据（震源被3个以上台站接受, about `109183` sources）.
+> v1.5: 在v1.0的基础上改变了 true model.
+> v2.0: 在v1.5的基础上改变了 true model. perturbation 更小了.
+> v3.0: 在v2.0的基础上改变了 true model. 反演模型深度为35km.
+> v4.0: 
+
 _**Source plot:**_
 > **src_rec map:** src and rec 的平面图和深度剖面
 > **ray map:** 计算射线密度（本质上是`np.histogram2d`）, and plot it.
