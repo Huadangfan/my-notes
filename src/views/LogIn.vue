@@ -1,6 +1,7 @@
 <template>
   <div>
-    <h1>Here is Login.Vue</h1>
+    <span class="clip" @click="jumpTodo">Here is Login.Vue</span>
+    <br>
     <button @click="jumpPynote">PyNote</button>
     <hr>
     <button @click="jumpGMTnote">GMTNote</button>
@@ -29,6 +30,13 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+.clip{
+  font-family: Helvetica,Arial,sans-serif;
+  font-size: 350%;
+  font-weight: 700;
+  background: -webkit-linear-gradient(120deg, #bd34fe 30%, #ff3670);
+  background-clip: text;
+  color: transparent;
+}
 </style>

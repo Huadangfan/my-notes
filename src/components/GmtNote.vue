@@ -12,12 +12,20 @@ export default {
       str: '# dddd'
     }
   },
+  beforeCreate() {
+        this.$nextTick(()=>{
+            document.body.setAttribute('style', 'background:white')
+        })
+  },
   created() {
     axios.get("gmt.md").then(res => {
       console.log(res.data);
       this.str = res.data;
     })
-  }
+  },
+  beforeUnmount(){
+        document.body.setAttribute('style', 'background:rgb(36,36,36)')
+  },
 }
 </script>
 
