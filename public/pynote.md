@@ -110,6 +110,54 @@ for shift, mainPeriod in enumerate(fil_period):
     ax2.add_artist(leg1)
 ```
 
+### Examples
+
+#### plot hist and scatter
+
+plot the travel-time curve. Need:
+
+`distance_pair` : src-rec pairs distance in [km]
+`tt` : src-rec pairs travel-time in [s]
+
+```python
+import matplotlib.gridspec as gridspec
+# import matplotlib.ticker as mticker
+
+gs = gridspec.GridSpec(5,1,hspace=0.05)
+
+fig_tt_curve = plt.figure(figsize=(6,6))
+ax_tt_hist   = fig_tt_curve.add_subplot(gs[0,:])
+ax_tt_curve  = fig_tt_curve.add_subplot(gs[1:5,:])
+
+ax_tt_hist.hist(distance_pair, bins=25, color='black', rwidth=0.9,density=True)
+ax_tt_hist.grid(ls='--',color='grey',linewidth=0.5,alpha=0.5,axis='y')
+ax_tt_hist.set_xticklabels([])
+ax_tt_hist.set_xticks([])
+ax_tt_hist.set_yticks([0,0.005,0.01],['0%', '0.5%', '1%'])
+ax_tt_hist.set_ylabel('Percentage')
+# ylabeltick = ax_tt_hist.get_yticks()
+# ax_tt_hist.yaxis.set_major_locator(mticker.FixedLocator(ylabeltick))
+# ax_tt_hist.set_yticklabels(['0%', '0.5%', '1%'])
+for i in ['top', 'left', 'right']:
+    ax_tt_hist.axes.spines[i].set_visible(False)
+
+_ = ax_tt_curve.scatter(distance_pair, tt, marker='.', s=0.5, label='P wave', color='black')
+ax_tt_curve.tick_params(axis='both',direction='in')
+ax_tt_curve.set(
+    xlabel='Epicentral distance (km)',
+    ylabel="Travel time (s)"
+)
+xmin, xmax = ax_tt_curve.get_xlim()
+ax_tt_hist.set_xlim([xmin, xmax])
+ax_tt_curve.legend(frameon=True)
+```
+<div align=center>
+<img src="https://cdn.staticaly.com/gh/Huadangfan/IMAGE-HOSTING@master/github_page/tt_curve.4u5bga66h0g0.webp" alt="travel time cutve"/>
+</div>
+
+
+<!-- {{{width="600" height="auto"}}} -->
+
 ## Numpy 应用
 
 ### 路径/射线密度统计
