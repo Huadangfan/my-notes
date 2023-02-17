@@ -96,7 +96,9 @@ custom_channels:
 
 ## Bash 常用
 
-### 文本循环
+### 文本
+
+#### 文本循环
 
 使用 `cat [file.name] | while` 会出现参数无法传递问题，使用文本换行符进行循环。
 
@@ -110,6 +112,11 @@ done
 IFS=$IFS_old
 ```
 
+#### awk 平均
+
+```bash
+cat data.dat | awk '{sum+=$1} END {print "Average = ", sum/NR}'
+```
 
 ## shell并行
 

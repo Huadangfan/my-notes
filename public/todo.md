@@ -43,6 +43,12 @@ inline int optim_method = 0; // 0: gradient descent, 1: halve_stepping, 2: LBFGS
 
 ### Xu and Song 2010 Tectonophysics
 
+data processing: 
+
+1. filtered based on the 1D model
+2. uneven data distribution
+decluster these data using a procedure similar to that described in Liang et al. (2004). cluster size is 10km
+
 ### Liu 2021 SRL (CVM1.0)
 
 [link](https://doi.org/10.1785/0220200318)
@@ -55,6 +61,15 @@ data processing:
 1. remove **redundant** earthquakes
 This uneven distribution of body-wave data could lead to unstable inversion problems and result in unreliable features in the inverted velocity models. 
 Divided study region into small bins (1-km-thick cell with 3 × 3 km area) and only use one randomly selected event in each bin.
+
+### Tong 2021 JGR
+
+data processing: 
+
+1. avoid event clustering
+divide the study area into small blocks with a uniform size of 1 km by 1 km by 0.5 km and choose the only earthquake that has the maximum number of first P-wave arrivals from every block if there is any
+2. earthquake locations are adjusted
+3. threshold of stations recorded is 4
 
 ## TomoATT work before 2023
 
@@ -126,6 +141,7 @@ gitGraph
 
    checkout "tomo test"
    merge Preprocess id: "clean data" tag: "v4.0"
+   commit id: "smaller pertur" tag: "v4.5"
 
    checkout "Soure plot"
    merge Preprocess id: "cells Hist" tag: ".py"
@@ -144,7 +160,8 @@ _**tomo test:**_
 > v1.5: 在v1.0的基础上改变了 true model.
 > v2.0: 在v1.5的基础上改变了 true model. perturbation 更小了.
 > v3.0: 在v2.0的基础上改变了 true model. 反演模型深度为35km.
-> v4.0: 
+> v4.0: 删去冗余数据，并限制4个接受
+> v4.5: 在v4.0基础上使用更小size的perturbation，并考虑了 `uniform` 和`非uniform` 网格
 
 _**Source plot:**_
 > **src_rec map:** src and rec 的平面图和深度剖面
