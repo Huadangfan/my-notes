@@ -199,7 +199,10 @@ sed -n '6,12p' [file]
 # p: print
 # print 6 to 12 lines
 ```
-
+- tab to whitespace
+```bash
+cat filename | col -x > filename_new
+```
 
 ## History :scroll:
 
