@@ -20,6 +20,10 @@ _**min_max_dep:**_ the min_dep should be negetive depth, which means the outer b
 
 通常对一个波长的perturbation用`5`个点来采样，从而决定空间网格划分。
 
+### `obj` and `res`
+
+`obj`表示的是程序进行优化的目标函数，其值本身没有具体的意义，你可以比较不同步骤的相对大小。`residual`的*均值*和*标准差*具有更实际的含义
+
 ### Model update
 
 1. First, calculated `kernel` using [`Fast Sweeping`](https://en.wikipedia.org/wiki/Fast_sweeping_method) method. 然后使用多重反演网格 `multiple inversion grid` 对 `kernel` 进行光滑，得到了光滑化之后的 `kernel`.
@@ -38,6 +42,7 @@ inline int optim_method = 0; // 0: gradient descent, 1: halve_stepping, 2: LBFGS
 - 反演区域要***大于等于***正演区域
 - 改变 `stencil_type` 不同的算法，改成1为迎风格式，速度更快，但精度较低，具体见examples
 - 可以使用***不均匀***的网格，具体见examples
+- `balance : true`, reweight the object function: obj -> obj * (total_weight)/(data_weight) (total_weight = ABS_data_weight + CR_data_weight)
 
 ## References
 
