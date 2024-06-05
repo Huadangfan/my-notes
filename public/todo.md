@@ -9,6 +9,16 @@ B-->D(fa:fa-spinner);
 
 ## TomoATT detail
 
+### Install
+
+```bash
+mkdir build
+cd build
+CC=gcc CXX=g++ cmake ../
+make -j 4
+# finished
+```
+
 ### Params input
 
 _**station location:**_ Lat, Lon, Depth (in meter, negetive (`-`) if beneth ground)
