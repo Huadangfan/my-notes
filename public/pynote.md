@@ -56,6 +56,12 @@ for i in a:
     print(i)
 ```
 
+Only display the top tick and label
+
+```python
+ax_plate.tick_params(top=True, labeltop=True, bottom=False, labelbottom=False)
+```
+
 `grid`常用参数设置，浅灰色且虚线，垂直于x轴
 
 ```python
