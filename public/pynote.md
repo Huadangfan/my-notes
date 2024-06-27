@@ -47,6 +47,15 @@ legfont={
 ax.legend(frameon=False,prop=legfont) # 将font的设置用字典传递
 ```
 
+find the available fontfamily
+
+```python
+import matplotlib
+a = sorted([f.name for f in matplotlib.font_manager.fontManager.ttflist])
+for i in a:
+    print(i)
+```
+
 `grid`常用参数设置，浅灰色且虚线，垂直于x轴
 
 ```python
