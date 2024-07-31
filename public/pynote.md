@@ -210,6 +210,14 @@ if __name__ == '__main__':
 
 使用 `Pool()` 进程池，使用 `Pool.apply_async(func, args=(...))` 方法。
 
+### Segmentation Fault Debug
+
+Add argument `-X faulthandler` while runing python script
+
+```bash
+python -X faulthandler your_script.py
+```
+
 ## Citation
 
 All figures were generated using [Generic Mapping Tools](https://www.generic-mapping-tools.org/) (GMT, Wessel et al., 2019) and the [Matplotlib](https://matplotlib.org/) library implemented in Python (Hunter, 2007).
