@@ -85,6 +85,18 @@ ax2 = fig.add_subplot(gs[:,-1])
 # plot ...
 ```
 
+Using gridspace in gridspace ([Nested Gridspecs](https://matplotlib.org/stable/gallery/subplots_axes_and_figures/gridspec_nested.html#sphx-glr-gallery-subplots-axes-and-figures-gridspec-nested-py)):
+
+```python
+fig = plt.figure(figsize=(18*0.8,8*0.8))
+gs = gridspec.GridSpec(1,2,wspace=0.3)
+gs0 = gridspec.GridSpecFromSubplotSpec(4,4,hspace=0.1, wspace=0.1, subplot_spec=gs[0])
+gs1 = gridspec.GridSpecFromSubplotSpec(4,4,hspace=0.1, wspace=0.1, subplot_spec=gs[1])
+ax_scatter = fig.add_subplot(gs0[1:,1:])
+ax_hist1 = fig.add_subplot(gs0[0,1:])
+ax_hist11 = fig.add_subplot(gs0[1:,0])
+```
+
 ### Axes 可见性
 
 ```python
