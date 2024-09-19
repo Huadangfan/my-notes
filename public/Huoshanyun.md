@@ -36,6 +36,8 @@ mount /dev/vdb /mnt/study
 
 ### build NFS (Network File System)
 
+参考[链接](https://blog.csdn.net/liu_feng_zi_/article/details/108403321)
+
 #### 服务端
 
 First install the package
