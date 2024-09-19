@@ -4,6 +4,30 @@
 
 ## CentOS
 
+### mnt the disk in CentOS
+
+check the disk info
+
+```bash
+lsblk
+```
+
+查看分区
+
+```bash
+fdisk -l
+```
+
+create the dirtory `mkdir /mnt/study`
+
+Formatting the disk `mkfs -t ext4 /dev/vdb`
+
+Finally, mount the disk on the dir which was created previously.
+
+```bash
+mount /dev/vdb /mnt/study
+```
+
 ### build `TOMOATT` environ in CentOS
 
 Install compiler and CMake (with GNU compiler)
