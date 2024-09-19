@@ -34,6 +34,87 @@ mount /dev/vdb /mnt/study
 /dev/vdb /mnt/study ext4 defaults 0 1
 ```
 
+### build NFS (Network File System)
+
+#### 服务端
+
+First install the package
+
+```bash
+yum -y install rpcbind nfs-utils
+```
+
+And then, create the sharing directory
+
+```bash
+mkdir -p /mnt/test/test2
+chomd 755 -R /mnt/test/test2
+```
+
+Configing the NFS
+
+```bash
+vim /etc/exports
+
+/mnt/test/test2 [ip or nodename](rw,no_root_squash,sync)
+```
+
+And then `exportfs -r`
+
+firewall?
+
+Then, start the service
+
+```bash
+systemctl start rpcbind
+systemctl start nfs-server
+
+# ststemctl status ** # check the status of service
+```
+
+开机自启动?
+
+```bash
+systemctl enable rpcbind
+systemctl enable nfs-server
+```
+
+use `showmount -e localhost` to check the localhost
+
+#### 客户端
+
+Install necessary packages
+
+```bash
+yum -y install rpcbind nfs-utils
+```
+
+and also start the service
+
+```bash
+systemctl start rpcbind
+systemctl start nfs-server
+```
+
+use the `showmount -e [服务器端ip or name]` to check the status
+
+挂载目录
+
+```bash
+mkdir /mnt/test/test2
+mount -t nfs [服务端ip or name]:/mnt/test/test2 /mnt/test/test2 -o vers=4
+```
+
+开机自挂载
+
+```bash
+# nfs 需要网络，挂载硬盘后再挂载nfs
+vim /etc/rc.d/rc.local
+
+# add after the last line
+mount -t nfs [服务端ip or name]:/mnt/test/test2 /mnt/test/test2 -o vers=4
+```
+
 ### build `TOMOATT` environ in CentOS
 
 Install compiler and CMake (with GNU compiler)
