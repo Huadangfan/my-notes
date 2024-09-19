@@ -28,6 +28,12 @@ Finally, mount the disk on the dir which was created previously.
 mount /dev/vdb /mnt/study
 ```
 
+开机自动挂载
+
+```bash
+/dev/vdb /mnt/study ext4 defaults 0 1
+```
+
 ### build `TOMOATT` environ in CentOS
 
 Install compiler and CMake (with GNU compiler)
