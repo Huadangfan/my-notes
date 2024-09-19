@@ -65,3 +65,17 @@ IdentityFile ~/.ssh/ecs.pem
 ```
 
 And then, `ssh ecs` to connect the HuoshanYun.
+
+## 登录端免密ssh连接节点端
+
+generate the ssh-key.
+
+```bash
+ssh-keygen -t rsa
+```
+
+copy file to node
+
+```bash
+ssh-copy-id [node name]
+```
