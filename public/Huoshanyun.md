@@ -158,6 +158,22 @@ yum -ql [package_name]
 module load [mpi_package]
 ```
 
+### 一些错误
+
+允许root和超线程
+
+```bash
+mpirun --allow-run-as-root --oversubscribe -n 2 ./to_run
+mpirun --hostfile host -n 2 ./to_run   # 指定节点运行数量
+
+vim host
+master  slots=2
+node1   slots=1
+node2   slots=1
+```
+
+`bash: line 1: orted: command not found` 注意检查openmpi的PATH和LD_LIBRARY_PATH是否准确，最好再`~/.bashrc`内部改。
+
 ### use linux ssh to connect CentOS service
 
 ```bash
