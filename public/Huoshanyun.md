@@ -172,7 +172,7 @@ node1   slots=1
 node2   slots=1
 ```
 
-`bash: line 1: orted: command not found` 注意检查openmpi的PATH和LD_LIBRARY_PATH是否准确，最好再`~/.bashrc`内部改。
+`bash: line 1: orted: command not found` 注意检查openmpi的PATH和LD_LIBRARY_PATH是否准确，最好在`~/.bashrc`内部改。
 
 ### use linux ssh to connect CentOS service
 
