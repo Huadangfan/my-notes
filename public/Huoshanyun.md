@@ -158,6 +158,9 @@ yum -ql [package_name]
 module load [mpi_package]
 ```
 
+### GFA搭建
+
+
 ### 一些错误
 
 允许root和超线程
