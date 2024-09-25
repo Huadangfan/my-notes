@@ -167,6 +167,7 @@ module load [mpi_package]
 
 ```bash
 mpirun --allow-run-as-root --oversubscribe -n 2 ./to_run
+# --oversubsrcibe 无视线程限制
 mpirun --hostfile host -n 2 ./to_run   # 指定节点运行数量
 
 vim host # 意思是master最多运行2个，node1最多运行1个
@@ -176,6 +177,15 @@ node2   slots=1
 ```
 
 `bash: line 1: orted: command not found` 注意检查openmpi的PATH和LD_LIBRARY_PATH是否准确，最好在`~/.bashrc`内部改。
+
+```bash
+vim ~/.bashrc
+
+export PATH=$PATH:/usr/lib64/openmpi/bin
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib64/openmpi/lib
+
+source ~/.bashrc
+```
 
 ### use linux ssh to connect CentOS service
 
