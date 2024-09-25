@@ -169,7 +169,7 @@ module load [mpi_package]
 mpirun --allow-run-as-root --oversubscribe -n 2 ./to_run
 mpirun --hostfile host -n 2 ./to_run   # 指定节点运行数量
 
-vim host
+vim host # 意思是master最多运行2个，node1最多运行1个
 master  slots=2
 node1   slots=1
 node2   slots=1
