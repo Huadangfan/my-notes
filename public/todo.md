@@ -54,6 +54,12 @@ inline int optim_method = 0; // 0: gradient descent, 1: halve_stepping, 2: LBFGS
 - 可以使用***不均匀***的网格，具体见examples
 - `balance : true`, reweight the object function: obj -> obj * (total_weight)/(data_weight) (total_weight = ABS_data_weight + CR_data_weight)
 
+### 各向异性vs速度：对残差的贡献
+
+1. 看你更加关注什么，这两个针对于不同的问题，整体上来看，速度是一阶的，各向异性是二阶的，但针对于同一个射线，这两个对数据残差的贡献是相同的，但对于多个方向的射线，速度的影响是要大于各向异性的
+2. 反演迭代初期，速度的kernel更大，反演后期各向异性和速度的kernel可以认为是相近的，他们的贡献程度就是计算出来的kernel大小
+3. 至于分开反演的问题，本质上是步长的选择，联合反演也可以，只是对速度和各向异性的权重的不同选择。
+
 ## References
 
 ### Xu and Song 2010 Tectonophysics
